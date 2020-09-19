@@ -4,6 +4,7 @@ from . import views
 
 urlpatterns = [
     path('accounts/signup/', views.signup, name='signup'),
+    path('', views.HomePageView.as_view, name='home'),
     # home ''
     # search from home -> orgs 'organizations/'
     # click from orgs -> orgs id 'organizations/<int:org_id>/'
