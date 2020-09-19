@@ -8,11 +8,8 @@ from django.views.generic.base import TemplateView
 # import models
 
 # Create your views here.
-class HomePageView(TemplateView):
-    template_name = 'main_app/home.html'
-
-    def get_feature_data(self):
-        pass
+def home_page(request):
+    return render(request, 'main_app/home.html')
 
 def signup(request):
     error_message = ''
