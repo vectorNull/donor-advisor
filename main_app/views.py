@@ -3,8 +3,14 @@ from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.views.generic.base import TemplateView
+
+# import models
 
 # Create your views here.
+def home_page(request):
+    return render(request, 'main_app/home.html')
+
 def signup(request):
     error_message = ''
     if request.method == 'POST':
