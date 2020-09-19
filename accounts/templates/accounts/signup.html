@@ -8,13 +8,13 @@
                     <h2>Sign up</h2>
                 </div>
                 <p class="text-red">{{ error_message }}</p>
-                <form method="POST" action="{% url 'signup' %}" class="form-validate">
+                <form method="POST" action="{% url 'account_signup' %}" class="form-validate">
                     {% csrf_token %}
                     {{ form.as_p }}
                     <button class="btn btn-lg btn-block btn-primary">Sign up</button>
                     <input type="hidden" name="next" value="{{ next }}">
                     <p class="text-center">
-                        <small class="text-center text-muted">Already have an account? <a href="#">Login</a></small>
+                        <small class="text-center text-muted">Already have an account? <a href="{% url 'account_login' %}">Login</a></small>
                     </p>
                 </form>
             </div>

@@ -7,13 +7,13 @@
                     <img src="" alt="" class="img-fluid mb-3">
                     <h2>Login</h2>
                 </div>
-                <form method="POST" action="{% url 'login' %}" class="form-validate">
+                <form method="POST" action="{% url 'account_login' %}" class="form-validate">
                     {% csrf_token %}
                     {{ form.as_p }}
                     <button class="btn btn-lg btn-block btn-primary">Sign in</button>
                     <input type="hidden" name="next" value="{{ next }}">
                     <p class="text-center">
-                        <small class="text-center text-muted">Don't have an account yet? <a href="#">Sign up</a></small>
+                        <small class="text-center text-muted">Don't have an account yet? <a href="{% url 'account_signup' %}">Sign up</a></small>
                     </p>
                 </form>
             </div>
