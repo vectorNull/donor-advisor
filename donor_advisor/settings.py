@@ -60,7 +60,7 @@ ROOT_URLCONF = 'donor_advisor.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': ['/main_app'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

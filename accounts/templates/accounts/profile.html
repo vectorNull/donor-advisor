@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+{% block content %}
+    <div class="row">
+        <div class="col-md-4">
+            <div class="card">
+                <img src="{{user.profile_url}}" alt="Image" class="card-img-top">
+                <div class="card-body">
+                    <h4 class="text-center card-title">Profile Details</h4>
+                    <h5 class="card-text">Name</h5>
+                    {% if user.first_name and user.last_name %}
+                        <p class="card-text">{{ user.first_name }} {{ user.last_name }}</p>
+                    {% else %}
+                        <p class="card-text">No name given</p>
+                    {% endif %}
+                    <h5 class="card-text">Description</h5>
+                    {% if user.description %}
+                        <p class="card-text">{{ user.description }}</p>
+                    {% else %}
+                        <p class="card-text">No description given</p>
+                    {% endif %}
+                    <h5 class="card-text">Email</h5>
+                    <p class="card-text">{{ user.email }}</p>
+                    <div class="card-body">
+                        <a href="#" class="btn btn-secondary btn-block">Update Profile</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-body">
+                    <h2 class="text-center card-title">Organizations</h2>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">
+                            <div class="card">
+                                <!--Card image-->
+                                <div class="view overlay">
+                                <img class="img-fluid card-img-top" src="https://mdbootstrap.com/img/Photos/Others/images/16.jpg"
+                                    alt="Card image cap">
+                                <a href="#!">
+                                    <div class="mask rgba-white-slight"></div>
+                                </a>
+                                </div>
+                            
+                                <!--Card content-->
+                                <div class="card-body">
+                                <!--Title-->
+                                <h4 class="card-title">Org A</h4>
+                                <!--Text-->
+                                <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque necessitatibus recusandae voluptates! Autem ut sint nihil, saepe quae doloremque tenetur aspernatur beatae necessitatibus quod iste ullam fugiat maiores aliquam culpa?</p>
+                                <!-- Provides extra visual weight and identifies the primary action in a set of buttons -->
+                                <button type="button" class="btn btn-block btn-info">Read more</button>  
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
