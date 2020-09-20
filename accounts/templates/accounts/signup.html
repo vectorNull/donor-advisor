@@ -13,6 +13,12 @@
                     {{ form.as_p }}
                     <button class="btn btn-lg btn-block btn-primary">Sign up</button>
                     <input type="hidden" name="next" value="{{ next }}">
+                    <hr>
+                    <button class="btn btn-outline-danger btn-block btn-social mb-3">
+                        <i class="fa-google fab btn-social-icon"> </i> Connect
+                        <span class="d-none d-sm-inline">with Google</span>
+                    </button>
+                    <hr>
                     <p class="text-center">
                         <small class="text-center text-muted">Already have an account? <a href="{% url 'account_login' %}">Login</a></small>
                     </p>

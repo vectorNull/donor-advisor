@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Playfair+Display:400,400i,700">
     <title>Donor Advisor: Individual Donations Made Simple</title>
@@ -56,7 +57,7 @@
             </div>
         </nav>
         <!-- /Navbar -->
-        <div class="container-fluid">
+        <div class="container-fluid main-content">
             {% block contentbefore %}
             {% endblock %}
             {% block content %}
@@ -76,7 +77,9 @@
                             <ul class="list-inline mb-0 mt-2 mt-md-0 text-center text-md-right">
                                 <li class="list-inline-item">
                                     <i class="fab fa-cc-visa 3x"></i>
+                                    <p class="d-inline">&ThickSpace;</p>
                                     <i class="fab fa-cc-paypal 3x"></i>
+                                    <p class="d-inline">&ThickSpace;</p>
                                     <i class="fas fa-hand-holding-usd 3x"></i>
                                 </li>
                             </ul>
