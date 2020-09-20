@@ -26,14 +26,21 @@
                         <li class="nav-item">
                             <a href="{% url 'home' %}" class="nav-link">Home</a>
                         </li>
-                        <li class="nav-item">
-                            <a href="#" class="nav-link">Organizations</a>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Organizations</a>
+                            <div class="dropdown-menu text-center">
+                                <a href="#" class="dropdown-item">All Organizations</a>
+                                <a href="#" class="dropdown-item">Create Organization</a>
+                                <a href="{% url 'account_profile' %}" class="text-info dropdown-item">My Organizations</a>
+                            </div>
                         </li>
                         {% if user.is_authenticated %}
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Profile</a>
-                                <div class="dropdown-menu dropdown-menu-right">
+                                <div class="dropdown-menu dropdown-menu-right text-center">
                                     <a href="{% url 'account_profile' %}" class="dropdown-item">View Profile</a>
+                                    <div class="dropdown-divider"></div>
+                                    <a href="{% url 'account_logout' %}" class="text-danger dropdown-item">Logout</a>
                                 </div>
                             </li>
                         {% else %}
@@ -49,7 +56,7 @@
             </div>
         </nav>
         <!-- /Navbar -->
-        <div class="container w100">
+        <div class="container-fluid">
             {% block contentbefore %}
             {% endblock %}
             {% block content %}
