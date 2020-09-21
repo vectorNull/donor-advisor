@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Playfair+Display:400,400i,700">
     <title>Donor Advisor: Individual Donations Made Simple</title>
@@ -24,23 +25,39 @@
                 <div class="collapse navbar-collapse" id="navbarCollapse">
                     <ul class="navbar-nav ml-auto">
                         <li class="nav-item">
-                            <a href="#" class="nav-link">Home</a>
+                            <a href="{% url 'home' %}" class="nav-link">Home</a>
                         </li>
-                        <li class="nav-item">
-                            <a href="#" class="nav-link">Organizations</a>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Organizations</a>
+                            <div class="dropdown-menu text-center">
+                                <a href="#" class="dropdown-item">All Organizations</a>
+                                <a href="#" class="dropdown-item">Create Organization</a>
+                                <a href="{% url 'account_profile' %}" class="text-info dropdown-item">My Organizations</a>
+                            </div>
                         </li>
-                        <li class="nav-item">
-                            <a href="{% url 'account_login' %}" class="nav-link">Sign in</a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="{% url 'account_signup' %}" class="nav-link">Sign up</a>
-                        </li>
+                        {% if user.is_authenticated %}
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Profile</a>
+                                <div class="dropdown-menu dropdown-menu-right text-center">
+                                    <a href="{% url 'account_profile' %}" class="dropdown-item">View Profile</a>
+                                    <div class="dropdown-divider"></div>
+                                    <a href="{% url 'account_logout' %}" class="text-danger dropdown-item">Logout</a>
+                                </div>
+                            </li>
+                        {% else %}
+                            <li class="nav-item">
+                                <a href="{% url 'account_login' %}" class="nav-link">Sign in</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{% url 'account_signup' %}" class="nav-link">Sign up</a>
+                            </li>
+                        {% endif %}
                     </ul>
                 </div>
             </div>
         </nav>
         <!-- /Navbar -->
-        <div class="container w100">
+        <div class="container-fluid main-content">
             {% block contentbefore %}
             {% endblock %}
             {% block content %}
@@ -59,7 +76,11 @@
                         <div class="col-md-6">
                             <ul class="list-inline mb-0 mt-2 mt-md-0 text-center text-md-right">
                                 <li class="list-inline-item">
-                                    <img src="" alt="cards?" class="w-2rem">
+                                    <i class="fab fa-cc-visa 3x"></i>
+                                    <p class="d-inline">&ThickSpace;</p>
+                                    <i class="fab fa-cc-paypal 3x"></i>
+                                    <p class="d-inline">&ThickSpace;</p>
+                                    <i class="fas fa-hand-holding-usd 3x"></i>
                                 </li>
                             </ul>
                         </div>

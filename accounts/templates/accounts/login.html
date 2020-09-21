@@ -1,24 +1,33 @@
 {% extends 'base.html' %}
+{% load crispy_forms_tags %}
 {% block content %}
     <div class="container-fluid px-3">
         <div class="row min-vh-100">
             <div class="col-md-8 col-lg-6 col-xl-5 d-flex align-items-center">
                 <div class="w-100 py-5 px-md-5 px-xl-6 position-relative">
-                    <img src="" alt="" class="img-fluid mb-3">
-                    <h2>Login</h2>
+                    <div class="mb-5">
+                        <img src="#" alt="Logo?" class="img-fluid mb-3">
+                        <h2>Welcome back</h2>
+                    </div>
+                    <form method="POST" action="{% url 'account_login' %}" class="form-validate">
+                        {% csrf_token %}
+                        {{ form|crispy }}
+                        <button class="btn btn-lg btn-block btn-primary">Sign in</button>
+                        <input type="hidden" name="next" value="{{ next }}">
+                        <hr>
+                        <button class="btn btn-outline-danger btn-block btn-social mb-3">
+                            <i class="fa-google fab btn-social-icon"> </i> Connect
+                            <span class="d-none d-sm-inline">with Google</span>
+                        </button>
+                        <hr>
+                        <p class="text-center">
+                            <small class="text-center text-muted">Don't have an account yet? <a href="{% url 'account_signup' %}">Sign up</a></small>
+                        </p>
+                    </form>
                 </div>
-                <form method="POST" action="{% url 'account_login' %}" class="form-validate">
-                    {% csrf_token %}
-                    {{ form.as_p }}
-                    <button class="btn btn-lg btn-block btn-primary">Sign in</button>
-                    <input type="hidden" name="next" value="{{ next }}">
-                    <p class="text-center">
-                        <small class="text-center text-muted">Don't have an account yet? <a href="{% url 'account_signup' %}">Sign up</a></small>
-                    </p>
-                </form>
             </div>
             <div class="col-md-4 col-lg-6 col-xl-7 d-none d-md-block">
-                <div class="bg-cover h-100" style="background-image: url(https://www.lifeprepacademy.org/wp-content/uploads/2020/09/LoginPg.jpg);"></div>
+                <div class="bg-cover h-100 mr-n3" style="background-image: url(https://www.lifeprepacademy.org/wp-content/uploads/2020/09/LoginPg.jpg);"></div>
             </div>
         </div>
     </div>

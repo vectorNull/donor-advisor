@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     # 3rd party
+    'crispy_forms',
 
     # local
     'main_app.apps.MainAppConfig',
@@ -60,7 +61,7 @@ ROOT_URLCONF = 'donor_advisor.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': ['/main_app'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -132,3 +133,6 @@ LOGOUT_REDIRECT_URL = '/'
 # Config for custom auth
 AUTH_USER_MODEL = 'accounts.CustomUser'
 AUTHENTICATION_BACKENDS = ['accounts.backends.EmailBackend']
+
+#Crispy Forms
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
