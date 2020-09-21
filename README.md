@@ -1,0 +1,2 @@
+
+Most people think of large foundations when they hear “philanthropy”, but individual donors are the lifeblood of the nonprofit sector. Donors share a passion for the mission of the organizations they support and build strong relationships with their leaders. Thus, almost two-thirds of nonprofit leaders say that they would prefer to receive more of their funding from individual donors.
