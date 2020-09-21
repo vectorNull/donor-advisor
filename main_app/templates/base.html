@@ -4,12 +4,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Playfair+Display:400,400i,700">
-    <title>Donor Advisor: Individual Donations Made Simple</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+    <title>Donor Advisor: Donations Made Simple</title>
 </head>
-<body style="padding-top: 72px;">
+<body class="w-100 mw-100 min-vh-100" style="padding-top: 72px;">
     <header class="header">
         <!-- Navbar -->
         <nav class="navbar navbar-expand-lg fixed-top shadow navbar-light bg-white">
@@ -57,7 +57,7 @@
             </div>
         </nav>
         <!-- /Navbar -->
-        <div class="container-fluid main-content">
+        <div class="container-fluid">
             {% block contentbefore %}
             {% endblock %}
             {% block content %}
