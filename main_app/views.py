@@ -1,7 +1,7 @@
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render, redirect
-from django.views.generic import ListView
+from django.views.generic import ListView, DetailView
 from django.db.models import Q
 
 from .forms import OrganizationForm
@@ -10,6 +10,10 @@ from .models import Organization
 # Create your views here.
 def home_page(request):
     return render(request, 'main_app/home.html')
+
+class OrganizationDetailView(DetailView):
+    model = Organization
+    template_name = 'main_app/organizations/details.html'
 
 class OrganizationResultsView(ListView):
     model = Organization
