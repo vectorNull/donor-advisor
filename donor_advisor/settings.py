@@ -40,6 +40,7 @@ INSTALLED_APPS = [
 
     # 3rd party
     'crispy_forms',
+    'phone_field',
 
     # local
     'main_app.apps.MainAppConfig',
