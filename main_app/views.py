@@ -1,7 +1,10 @@
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render, redirect
 from django.views.generic import ListView
 from django.db.models import Q
 
+from .forms import OrganizationForm
 from .models import Organization
 
 # Create your views here.
@@ -17,7 +20,6 @@ class OrganizationResultsView(ListView):
         location = self.request.GET.get('l')
         category = self.request.GET.get('c')
         if not query and not location and not category:
-            print(True)
             return Organization.objects.order_by('-name').all()
         if not query:
             query = 'None'
@@ -34,3 +36,17 @@ class OrganizationResultsView(ListView):
             Q(zip_code=location) |
             Q(category__icontains=category)
         )
+@login_required
+def organization_create(request):
+    if (request.method == 'GET'):
+        org_form = OrganizationForm()
+        return render(request, 'main_app/organizations/create.html', {
+            'org_form': org_form
+        })
+    if (request.method == 'POST'):
+        form = OrganizationForm(request.POST)
+        if form.is_valid():
+            new_org = form.save(commit=False)
+            new_org.user_id = request.user.id
+            new_org.save()
+        return redirect('org_results')
