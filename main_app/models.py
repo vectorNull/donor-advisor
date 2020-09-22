@@ -64,7 +64,7 @@ class Organization(models.Model):
     def __str__(self):
         return self.name
 
-class BoardMembers(models.Model):
+class BoardMember(models.Model):
     member = models.CharField(max_length=50)
     email = models.CharField(max_length=50)
     organization = models.ForeignKey(Organization, on_delete=models.CASCADE)
@@ -72,7 +72,7 @@ class BoardMembers(models.Model):
     def __str__(self):
         return self.member
 
-class Reviews(models.Model):
+class Review(models.Model):
     content = models.TextField(max_length=256)
     user = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
     organization = models.ForeignKey(Organization, on_delete=models.CASCADE)
@@ -80,7 +80,7 @@ class Reviews(models.Model):
     def __str__(self):
         return f'({self.id}) {self.organization} {self.user}'
 
-class Gallary(models.Model):
+class Gallery(models.Model):
     picture_url = models.CharField(max_length=200)
     organization = models.ForeignKey(Organization, on_delete=models.CASCADE)
 

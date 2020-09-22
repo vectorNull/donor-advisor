@@ -20,7 +20,7 @@
                     <p>{{org.get_category_display}}</p>
                     <p><span class="font-weight-bold">{{org.city}}</span>, {{org.state}} | <span class="font-weight-bold">EIN</span>: {{org.ein}}</p>
                     <p class="font-italic">{{org.mission_statements}}</p>
-                    <a href="#" class="btn btn-outline-primary">Read More</a>
+                    <a href="{% url 'org_details' org.id %}" class="btn btn-outline-primary">Read More</a>
                 </div>
                 <div class="col-3 d-none d-md-block">
                     <div class="list-group">
@@ -48,6 +48,8 @@
                 </div>
             </div>
             <hr>
+        {% empty %}
+        <h3>No Results found :(</h3>
         {% endfor %}
     </div>
 </div>
