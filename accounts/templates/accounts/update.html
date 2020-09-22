@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+    <div class="container-fluid px-3">
+        <div class="row min-vh-100">
+            <div class="col-md-8 col-lg-6 col-xl-5 d-flex align-items-center">
+                <div class="w-100 py-5 px-md-5 px-xl-6 position-relative">
+                    <div class="mb-5">
+                        <img src="#" alt="Logo?" class="img-fluid mb-3">
+                        <h2>Update Profile</h2>
+                    </div>
+                    <form method="POST" enctype="multipart/form-data" action="{% url 'account_update_save' %}" class="form-validate">
+                        {% csrf_token %}
+                        <div class="form-group">
+                            <label for="id_first_name">First Name</label>
+                            <div>
+                                <input value="{{ user.first_name }}" name="first_name" type="text" class="textinput textInput form-control" id="id_first_name">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="id_last_name" class="">Last name</label> 
+                            <div> 
+                                <input value="{{ user.last_name }}" type="text" name="last_name" maxlength="150" class="textinput textInput form-control" id="id_last_name"> 
+                            </div> 
+                        </div>
+                        <div class="form-group"> 
+                            <label for="id_description" class=" requiredField">Description</label> 
+                            <div> 
+                                <textarea  name="description" cols="40" rows="10" maxlength="250" class="textarea form-control" id="id_description">{{ user.description }}</textarea> 
+                            </div> 
+                        </div>
+                        <div class="form-group">
+                            <label for="id_profile_url">Profile Photo</label>
+                            <div>
+                                <input name="photo-file" type="file" class="form-control-file" id="id_profile_url">
+                                <label for="profile_url_current">Current Profile Photo</label>
+                                <input id="profile_url_current"value="{{user.profile_url}}" type="text" class="form-control" readonly>
+                            </div>
+                        </div>
+                        <button class="btn btn-lg btn-block btn-primary">Update profile</button>
+                        <input type="hidden" name="next" value="{{ next }}">
+                    </form>
+                    <hr>
+                    <a href="{% url 'account_delete' %}" class="btn text-light btn-block btn-danger">Delete Profile</a>
+                </div>
+            </div>
+            <div class="col-md-4 col-lg-6 col-xl-7 d-none d-md-block">
+                <div class="bg-cover h-100 mr-n3" style="background-image: url(https://www.lifeprepacademy.org/wp-content/uploads/2020/09/LoginPg.jpg);"></div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
