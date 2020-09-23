@@ -14,7 +14,6 @@ chardet==3.0.4
 Click==7.0
 click-plugins==1.1.1
 colorama==0.4.3
-command-not-found==0.3
 cupshelpers==1.0
 dbus-python==1.2.16
 decorator==4.4.2
