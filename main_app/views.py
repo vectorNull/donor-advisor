@@ -52,9 +52,8 @@ class OrganizationUpdateView(LoginRequiredMixin, UpdateView):
     template_name = 'main_app/organizations/update.html'
     fields = [
         'name', 'ein', 'address', 'city', 
-        'description','mission_statements','state', 'zip_code',
-        'phone','contact_email','website_url', 'category',
-        'fiscal_sponsor','guidestar_url', 'logo_url'
+        'state', 'zip_code', 'phone','contact_email','website_url', 'category',
+        'fiscal_sponsor','guidestar_url', 'logo_url','mission_statement', 'description',
     ]
 
 @login_required
@@ -64,7 +63,7 @@ def organization_delete(request, pk):
 
 @login_required
 def organization_create(request):
-    if not request.user.is_complete():
+    if not request.user.is_partial_complete():
         return redirect('account_update')
     if request.method == 'POST':
         form = OrganizationForm(request.POST)
