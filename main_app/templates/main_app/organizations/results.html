@@ -1,7 +1,4 @@
 {% extends 'base.html' %}
-{%block contentbefore%}
-    <div style="padding-top: 72px;"></div>
-{%endblock%}
 {%block content %}
 {% include 'base_search.html' %}
 <hr>
@@ -12,10 +9,10 @@
         {% for org in organization_list %}
             <div class="row  border-left border-danger">
                 <div class="col-3 d-none d-sm-block">
-                    <img class="mw-100 mh-100" src="{{org.logo_url}}" alt="...">
+                    <img class="img-thumbnail" src="{{org.logo_url}}" alt="..." style="width: 15vw; max-width: 250px; min-width: 140px;">
                 </div>
                 <div class="col-xs-12 col-sm-9 col-md-6">
-                    <img src="{{org.logo_url}}" alt="..." class="img-thumbnail center d-sm-none d-xs-block">
+                    <img src="{{org.logo_url}}" alt="..." class="img-thumbnail center d-sm-none d-xs-block" style="width: 15vw; max-width: 200px; min-width: 100px;">
                     <h5>{{org.name}} </i>{% if org.verified %} <span class="badge badge-primary">Verified</span> {% else %} <span class="badge badge-danger">Not Verified</span> {% endif %}</h5>
                     <p>{{org.get_category_display}}</p>
                     <p><span class="font-weight-bold">{{org.city}}</span>, {{org.state}} | <span class="font-weight-bold">EIN</span>: {{org.ein}}</p>

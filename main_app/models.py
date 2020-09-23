@@ -1,4 +1,5 @@
 from django.db import models
+from django.urls import reverse
 from accounts.models import CustomUser
 from django.contrib.postgres.fields import ArrayField
 from django.utils.translation import gettext_lazy as _
@@ -54,7 +55,7 @@ class Organization(models.Model):
     ein = models.CharField(max_length=15)
     fiscal_sponsor = models.CharField(max_length = 200)
     guidestar_url = models.CharField(max_length = 200)
-    logo_url = models.CharField(max_length = 200)
+    logo_url = models.CharField(max_length = 200, default='https://www.resetyourbody.com/wp-content/uploads/COMPANY_LOGO/logo-default.png')
     #video_url TODO ICE BOX
     description = models.TextField(max_length=500)
     mission_statements = models.TextField(max_length=500)
@@ -63,6 +64,9 @@ class Organization(models.Model):
 
     def __str__(self):
         return self.name
+
+    def get_absolute_url(self):
+        return reverse('org_details', kwargs={'pk': self.id})
 
 class BoardMember(models.Model):
     member = models.CharField(max_length=50)

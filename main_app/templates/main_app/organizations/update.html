@@ -6,14 +6,16 @@
             <div class="col-md-8 col-lg-6 col-xl-5 d-flex align-items-center">
                 <div class="w-100 py-5 px-md-5 px-xl-6 position-relative">
                     <div class="mb-5">
-                        <h2 class="text-center">Create Organization</h2>
+                        <h2 class="text-center">Update Organization</h2>
                     </div>
-                    <form method="POST" action="{% url 'org_create' %}" class="form-validate">
+                    <form method="POST" action="" class="form-validate">
                         {% csrf_token %}
-                        {{ org_form|crispy }}
-                        <button class="btn btn-lg btn-block btn-primary">Submit Organization</button>
+                        {{ form|crispy }}
+                        <button class="btn btn-lg btn-block btn-primary">Update Organization</button>
                         <input type="hidden" name="next" value="{{ next }}">
                     </form>
+                    <hr>
+                    <a href="{% url 'org_delete' object.id %}" class="btn btn-danger btn-block">Delete Organization</a>
                 </div>
             </div>
             <div class="col-md-4 col-lg-6 col-xl-7 d-none d-md-block">

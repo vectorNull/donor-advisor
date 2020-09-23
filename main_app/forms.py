@@ -9,5 +9,5 @@ class OrganizationForm(ModelForm):
             'name', 'ein', 'address', 'city', 
             'description','mission_statements','state', 'zip_code',
             'phone','contact_email','website_url', 'category',
-            'fiscal_sponsor','guidestar_url',
+            'fiscal_sponsor','guidestar_url', 'logo_url'
         ]
