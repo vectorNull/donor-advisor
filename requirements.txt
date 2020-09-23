@@ -28,7 +28,6 @@ docopt==0.6.2
 entrypoints==0.3
 Flask==1.1.2
 future==0.18.2
-gpg===1.13.1-unknown
 gunicorn==20.0.4
 html5lib==1.0.1
 httplib2==0.14.0
