@@ -67,6 +67,9 @@ class Organization(models.Model):
 
     def get_absolute_url(self):
         return reverse('org_details', kwargs={'pk': self.id})
+    
+    def get_donations(self):
+        return self.donation_set.all().order_by('-id')[:10]
 
 class BoardMember(models.Model):
     member = models.CharField(max_length=50)
@@ -90,4 +93,12 @@ class Gallery(models.Model):
 
     def __str__(self):
         return f'{self.organization} picture id ({self.id})'
+
+class Donation(models.Model):
+    amount = models.FloatField(default=50.00)
+    anonymous = models.BooleanField(default=False)
+    user = models.ForeignKey(CustomUser, blank=True, null=True, on_delete=models.SET_NULL)
+    organization = models.ForeignKey(Organization, on_delete=models.CASCADE)
     
+    def __str__(self):
+        return f'{self.user} org ({self.organization.id}) amount ${self.amount}'
