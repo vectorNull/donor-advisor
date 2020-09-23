@@ -12,9 +12,14 @@ from .models import Organization
 def home_page(request):
     return render(request, 'main_app/home.html')
 
+
+def contact_page(request):
+    return render(request, 'main_app/contact.html')
+
 class OrganizationDetailView(DetailView):
     model = Organization
     template_name = 'main_app/organizations/details.html'
+
 
 class OrganizationResultsView(ListView):
     model = Organization

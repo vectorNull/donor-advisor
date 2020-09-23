@@ -10,3 +10,9 @@
     height: 100%;
     transform: translate(-50%, -50%);
 }
+
+.mb-4 {
+    margin: 5px;
+    padding: 20px;
+    font-size: 18px;
+}
