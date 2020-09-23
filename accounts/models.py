@@ -10,3 +10,12 @@ class CustomUser(AbstractUser):
 
     def __str__(self):
         return self.email
+
+    def full_name(self):
+        return f'{self.first_name.capitalize()} {self.last_name.capitalize()}'
+
+    def is_partial_complete(self):
+        return self.first_name and self.last_name and self.email
+    
+    def is_complete(self):
+        return self.is_partial_complete() and self.description and self.profile_url

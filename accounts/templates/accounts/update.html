@@ -7,7 +7,10 @@
                 <div class="w-100 py-5 px-md-5 px-xl-6 position-relative">
                     <div class="mb-5">
                         <img src="#" alt="Logo?" class="img-fluid mb-3">
-                        <h2>Update Profile</h2>
+                        <h2 class="text-center">Update Profile</h2>
+                        {% if not user.is_complete %}
+                        <p class="text-danger text-center alert-warning">To post replies OR create organizations you must complete your profile</p>
+                        {% endif %}
                     </div>
                     <form method="POST" enctype="multipart/form-data" action="{% url 'account_update_save' %}" class="form-validate">
                         {% csrf_token %}

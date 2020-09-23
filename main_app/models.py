@@ -1,4 +1,5 @@
 from django.db import models
+from django.urls import reverse
 from accounts.models import CustomUser
 from django.contrib.postgres.fields import ArrayField
 from django.utils.translation import gettext_lazy as _
@@ -54,7 +55,7 @@ class Organization(models.Model):
     ein = models.CharField(max_length=15)
     fiscal_sponsor = models.CharField(max_length = 200)
     guidestar_url = models.CharField(max_length = 200)
-    logo_url = models.CharField(max_length = 200)
+    logo_url = models.CharField(max_length = 200, default='https://www.resetyourbody.com/wp-content/uploads/COMPANY_LOGO/logo-default.png')
     #video_url TODO ICE BOX
     description = models.TextField(max_length=500)
     mission_statements = models.TextField(max_length=500)
@@ -64,7 +65,10 @@ class Organization(models.Model):
     def __str__(self):
         return self.name
 
-class BoardMembers(models.Model):
+    def get_absolute_url(self):
+        return reverse('org_details', kwargs={'pk': self.id})
+
+class BoardMember(models.Model):
     member = models.CharField(max_length=50)
     email = models.CharField(max_length=50)
     organization = models.ForeignKey(Organization, on_delete=models.CASCADE)
@@ -72,7 +76,7 @@ class BoardMembers(models.Model):
     def __str__(self):
         return self.member
 
-class Reviews(models.Model):
+class Review(models.Model):
     content = models.TextField(max_length=256)
     user = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
     organization = models.ForeignKey(Organization, on_delete=models.CASCADE)
@@ -80,7 +84,7 @@ class Reviews(models.Model):
     def __str__(self):
         return f'({self.id}) {self.organization} {self.user}'
 
-class Gallary(models.Model):
+class Gallery(models.Model):
     picture_url = models.CharField(max_length=200)
     organization = models.ForeignKey(Organization, on_delete=models.CASCADE)
 
