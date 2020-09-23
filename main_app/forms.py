@@ -7,7 +7,6 @@ class OrganizationForm(ModelForm):
         model = Organization
         fields = [
             'name', 'ein', 'address', 'city', 
-            'description','mission_statements','state', 'zip_code',
-            'phone','contact_email','website_url', 'category',
-            'fiscal_sponsor','guidestar_url',
+            'state', 'zip_code', 'phone','contact_email','website_url', 'category',
+            'fiscal_sponsor','guidestar_url', 'description','mission_statements',
         ]
