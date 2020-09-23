@@ -21,8 +21,26 @@
         <a class="btn btn-info rounded-0 font-italic" href="#details">Details</a>
         <a class="btn btn-info rounded-0 font-italic" href="#reviews">Reviews</a>
     </div>
-    <div class="col-3 d-none d-md-block border-right border-danger mx-auto">
-        <p>TODO left side bar</p>
+    <div class="col-3 d-none d-md-block border-right border-danger mx-auto bg-light">
+        <div class="list-group">
+        {% for donation in organization.get_donations %}
+            <div class="row">
+                <div class="col-3 list-group-item list-group-item-action flex-column align-items-start border-right-0 border-top-0">
+                    <h4 class="text-danger"><i class="fas fa-hand-holding-heart"></i></h4>
+                </div>
+                <div class="col-9 list-group-item list-group-item-action flex-column align-items-start border-left-0">
+                    <div class="d-flex w-100 justify-content-between">
+                        {% if donation.anonymous %}
+                            <p class="mb-1">Anonymous</p>
+                        {% else %}
+                            <p class="mb-1">{{ donation.user.full_name }}</p>
+                        {% endif %}
+                    </div>
+                    <p class="mb-1 font-weight-bold">${{donation.amount}}</p>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
     </div>
     <div class="col-sm-8 col-md-5">
         <p class="pt-1 font-weight-normal text-center" id="mission">{{organization.name}} is {% if organization.verified %} <span class="badge badge-success">Verified</span> {% else %} <span class="badge badge-danger">Not Verified</span> {% endif %}</p>
@@ -35,9 +53,8 @@
         <h4 class="font-italic pt-2 pb-2" id="details">Gallery</h4>
         {% if user == organization.user %}
         <form action="" class="form-inline">
-            <div class="form-group mx-sm-3 mb-2">
-                <input type="password" class="form-control" placeholder="Image url...">
-            </div>
+            {% csrf_token %}
+            <input type="text" class="form-control mb-2 mr-1" placeholder="Image url...">
             <button type="submit" class="btn btn-primary mb-2">Upload</button>
         </form>
         {% endif %}
@@ -49,56 +66,61 @@
             {% endfor %}
         </div>
     </div>
-    <div class="col-sm-4 col-xs-12">
+    <div class="col-sm-4 col-xs-12 bg-light border-left border-danger">
         <div class="list-group m-0 mb-1">
-            <div class="list-group-item list-group-item-action flex-column align-items-start">
-                <div class="d-flex w-100 justify-content-between">
-                    <p class="mb-1 font-weight-bold">EIN</p>
+            <div class="row">
+                <div class="col-12 list-group-item list-group-item-action flex-column align-items-start">
+                    <div class="d-flex w-100 justify-content-between">
+                        <p class="mb-1 font-weight-bold">EIN</p>
+                    </div>
+                    <p class="mb-1 font-italic">{{organization.ein}}</p>
                 </div>
-                <p class="mb-1 font-italic">{{organization.ein}}</p>
-            </div>
-            <div class="list-group-item list-group-item-action flex-column align-items-start">
-                <div class="d-flex w-100 justify-content-between">
-                    <p class="mb-1 font-weight-bold">Contact</p>
+                <div class="list-group-item list-group-item-action flex-column align-items-start">
+                    <div class="d-flex w-100 justify-content-between">
+                        <p class="mb-1 font-weight-bold">Contact</p>
+                    </div>
+                    <p class="mb-1 font-italic"><i class="fas fa-phone"></i> {{organization.phone}}</p>
+                    <p class="mb-1 font-italic"><i class="fas fa-envelope"></i> <a href="mailto::{{organization.contact_email}}">{{organization.contact_email}}</a></p>
                 </div>
-                <p class="mb-1 font-italic"><i class="fas fa-phone"></i> {{organization.phone}}</p>
-                <p class="mb-1 font-italic"><i class="fas fa-envelope"></i> <a href="mailto::{{organization.contact_email}}">{{organization.contact_email}}</a></p>
-            </div>
-            <div class="list-group-item list-group-item-action flex-column align-items-start">
-                <div class="d-flex w-100 justify-content-between">
-                    <p class="mb-1 font-weight-bold">Main Address</p>
+                <div class="list-group-item list-group-item-action flex-column align-items-start">
+                    <div class="d-flex w-100 justify-content-between">
+                        <p class="mb-1 font-weight-bold">Main Address</p>
+                    </div>
+                    <p class="mb-1 font-italic">{{organization.address}} {{organization.city}}, {{organization.state}} {{organization.zip_code}}</p>
                 </div>
-                <p class="mb-1 font-italic">{{organization.address}} {{organization.city}}, {{organization.state}} {{organization.zip_code}}</p>
-            </div>
-            <div class="list-group-item list-group-item-action flex-column align-items-start">
-                <div class="d-flex w-100 justify-content-between">
-                    <p class="mb-1 font-weight-bold">Links</p>
+                <div class="list-group-item list-group-item-action flex-column align-items-start">
+                    <div class="d-flex w-100 justify-content-between">
+                        <p class="mb-1 font-weight-bold">Links</p>
+                    </div>
+                    <p class="mb-1 font-italic"><a target="_blank" href="{{organization.website_url}}">Website</a></p>
+                    {% if organization.guidestar_url %}
+                    <p class="mb-1 font-italic"><a target="_blank" href="{{organization.guidestar_url}}">Guide Star</a></p>
+                    {%endif%}
                 </div>
-                <p class="mb-1 font-italic"><a target="_blank" href="{{organization.website_url}}">Website</a></p>
-                {% if organization.guidestar_url %}
-                <p class="mb-1 font-italic"><a target="_blank" href="{{organization.guidestar_url}}">Guide Star</a></p>
+                {%if organization.fiscal_sponsor%}
+                <div class="list-group-item list-group-item-action flex-column align-items-start">
+                    <div class="d-flex w-100 justify-content-between">
+                        <p class="mb-1 font-weight-bold">Fiscal Sposor</p>
+                    </div>
+                    <p class="mb-1 font-italic">{{organization.fiscal_sponsor}}</p>
+                </div>
                 {%endif%}
-            </div>
-            {%if organization.fiscal_sponsor%}
-            <div class="list-group-item list-group-item-action flex-column align-items-start">
-                <div class="d-flex w-100 justify-content-between">
-                    <p class="mb-1 font-weight-bold">Fiscal Sposor</p>
-                </div>
-                <p class="mb-1 font-italic">{{organization.fiscal_sponsor}}</p>
-            </div>
-            {%endif%}
-            <div class="list-group-item list-group-item-action flex-column align-items-start">
-                <div class="d-flex w-100 justify-content-between">
-                    <p class="mb-1 font-weight-bold">Board Members</p>
-                </div>
-                <div class="carousel slide" id="boardMember" data-ride="carousel">
-                    <div class="carousel-inner">
-                        {%for member in organization.boardmember_set.all %}
-                        <div class="carousel-item {% if forloop.first %} active {% endif %}">
-                            <p class="mb-1 font-italic">{{member.member}}</p>
-                            <p class="mb-1 font-italic">{{member.email}}</p>
+                <div class="list-group-item list-group-item-action flex-column align-items-start">
+                    <div class="d-flex w-100 justify-content-between">
+                        <p class="mb-1 font-weight-bold">Board Members</p>
+                    </div>
+                    <div class="carousel slide" id="boardMember" data-ride="carousel">
+                        <div class="carousel-inner">
+                            {%for member in organization.boardmember_set.all %}
+                            <div class="carousel-item {% if forloop.first %} active {% endif %}">
+                                <p class="mb-1 font-italic">{{member.member}}</p>
+                                <p class="mb-1 font-italic">{{member.email}}</p>
+                            </div>
+                            {%endfor%}
+                            <form action="">
+                                {% csrf_token %}
+                            </form>
                         </div>
-                        {%endfor%}
                     </div>
                 </div>
             </div>
@@ -111,8 +133,9 @@
             <h2 class="font-italic pt-2">Reviews</h2>
             {% if user.is_authenticated %}
             {% if user.is_partial_complete %}
-                <form action="#">
-                    <textarea class="w-100 p-1" placeholder="Enter your review" name=""></textarea>
+                <form action="{% url 'org_review_create' organization.id %}" method="POST">
+                    {% csrf_token %}
+                    <textarea class="w-100 p-1" placeholder="Enter your review" name="content" required></textarea>
                     <button type="submit" class="btn btn-block btn-primary">Submit</button>
                 </form>
             {% else%}
@@ -128,7 +151,7 @@
                 <div class="col-md-10 col-sm-12">
                     <div class="border-bottom d-flex">
                         <img src="{{ review.user.profile_url }}" style="width: 50px;" alt="..." class="img-thumbnail d-md-none d-sm-block">
-                        <h4 class="font-weight-normal">{{ review.user.full_name }}</h4>
+                        <h4 class="font-weight-normal">{{ review.user.full_name }} {% if review.user == user %}<form action="{% url 'org_review_delete' organization.id review.id %}" method="POST" class="d-inline inline-form">{% csrf_token %}<button type="submit" class="btn btn-sm btn-danger mb-1">Delete</button></form>{%endif%}</h4>
                     </div>
                     <p>{{review.content}}</p>
                 </div>
