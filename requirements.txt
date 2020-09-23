@@ -75,7 +75,6 @@ pyppeteer==0.2.2
 PyQt5==5.14.1
 pyrsistent==0.15.5
 python-dateutil==2.8.1
-python-debian===0.1.36ubuntu1
 python3-openid==3.2.0
 pythondialog==3.5.1
 pytz==2019.3
