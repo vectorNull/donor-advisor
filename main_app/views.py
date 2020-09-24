@@ -5,7 +5,7 @@ from django.views.generic import ListView, DetailView
 from django.views.generic.edit import UpdateView, DeleteView
 from django.db.models import Q
 
-from .forms import OrganizationForm
+from .forms import OrganizationForm, DonationForm
 from .models import Organization, Review
 
 # Create your views here.
@@ -95,3 +95,23 @@ def org_review_delete(request, pk, review_id):
     if review.user == request.user:
         review.delete()
     return redirect('org_details', pk=pk)
+
+@login_required
+def org_donate_create(request, pk):
+    if not request.user.is_partial_complete():
+        return redirect('account_update')
+    if request.method == 'POST':
+        form = DonationForm(request.POST)
+        if form.is_valid():
+            new_donation = form.save(commit=False)
+            new_donation.user_id = request.user.id
+            new_donation.organization_id = pk
+            new_donation.amount = request.POST.get('total_amount')
+            new_donation.save()
+        return redirect('org_details', pk=pk)
+    org = Organization.objects.get(id=pk)
+    donate_form = DonationForm()
+    return render(request, 'main_app/organizations/donations/create.html', {
+        'donate_form': donate_form,
+        'org': org
+    })

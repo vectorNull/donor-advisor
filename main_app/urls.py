@@ -17,4 +17,7 @@ urlpatterns = [
     #REVIEWS
     path('organizations/<int:pk>/reviews/create/', views.org_review_create, name='org_review_create'),
     path('organizations/<int:pk>/reviews/<int:review_id>/delete/', views.org_review_delete, name='org_review_delete'),
+
+    #DONATIONS
+    path('organizations/<int:pk>/donate/', views.org_donate_create, name='org_donate_create'),
 ]

@@ -1,0 +1,85 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+    <div class="container-fluid px-3">
+        <div class="row min-vh-100">
+            <div class="col-md-8 col-lg-6 col-xl-5 d-flex align-items-start">
+                <div class="w-100 py-5 px-md-5 px-xl-6 position-relative">
+                    <div class="mb-5 text-center">
+                        <h2>{{org.name}}</h2>
+                        <p>{{org.ein}}</p>
+                        <p>{{org.city}}, {{org.state}}</p>
+                    </div>
+                    <form id="p-form" method="POST" action="{% url 'org_donate_create' org.id %}" class="form-validate">
+                        {% csrf_token %}
+                        {{ donate_form|crispy }}
+                        <hr>
+                        <p>Mock User Details</p>
+                        <p>Mock Card Details</p>
+                        <hr>
+                        <p>Would you like to cover the processing fee?</p>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="p-fee" id="p-fee-1" value="1" checked>
+                            <label class="form-check-label" for="p-fee-1">Yes, add 4.75% to my donation</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="p-fee" id="p-fee-2" value="0">
+                            <label class="form-check-label" for="p-fee-2">No, thanks</label>
+                        </div>
+                        <hr>
+                        <div class="form-group">
+                            <p>Would you like to tip Donor Adviser?</p>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="p-tip" id="p-tip-1" value="10" checked>
+                                <label class="form-check-label" for="p-tip-1">10%</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="p-tip" id="p-tip-2" value="15">
+                                <label class="form-check-label" for="p-tip-2">15%</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="p-tip" id="p-tip-3" value="20">
+                                <label class="form-check-label" for="p-tip-3">20%</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="p-tip" id="p-tip-4" value="0">
+                                <label class="form-check-label" for="p-tip-4">No, thanks</label>
+                            </div>
+                        </div>
+                        <hr>
+                        <p class="font-weight-bold">Donation amount: $<span id="p-amount"></span></p>
+                        <input type="text" id="p-input" name="total_amount" hidden>
+                        <hr>
+                        <button class="btn btn-lg btn-block btn-success">Donate Now</button>
+                        <input type="hidden" name="next" value="{{ next }}">
+                    </form>
+                </div>
+            </div>
+            <div class="col-md-4 col-lg-6 col-xl-7 d-none d-md-block">
+                <div class="bg-cover h-100 mr-n3" style="background: #11998e;background: -webkit-linear-gradient(to right, #FFF, #11998e);background: linear-gradient(to right, #FFF, #11998e);"></div>
+            </div>
+        </div>
+    </div>
+    <script>
+        document.getElementById('p-form').addEventListener('change', formChange)
+
+        function formChange(e) {
+            let total = 0
+            const amount = parseInt(document.getElementById('id_amount').value)
+            total += amount
+            let fee = parseInt(document.querySelector('input[name="p-fee"]:checked').value)
+            if (fee) {
+                total += total * .0475
+            }
+            const tip = parseInt(document.querySelector('input[name="p-tip"]:checked').value)
+            if (tip) {
+                total += total*(tip*.01)
+            }
+            total = total.toFixed(2)
+            const donation = document.getElementById('p-amount')
+            donation.textContent = total
+            document.getElementById('p-input').value = total
+        }
+        formChange()
+    </script>
+{% endblock %}
