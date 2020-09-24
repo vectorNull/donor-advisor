@@ -1,6 +1,6 @@
 from django.forms import ModelForm
 
-from .models import Organization, Donation
+from .models import Organization, Donation, BoardMember
 
 class OrganizationForm(ModelForm):
     class Meta:
@@ -23,3 +23,11 @@ class DonationForm(ModelForm):
             'anonymous': 'Remain Anonymous?'
         }
         fields = ['amount', 'anonymous']
+
+class BoardMemberForm(ModelForm):
+    class Meta:
+        model = BoardMember
+        labels = {
+            'member': 'Full Name',
+        }
+        fields = ['member','email', 'company', 'title']
