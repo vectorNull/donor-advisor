@@ -3,7 +3,7 @@
     <div class="row">
         <div class="col-md-4">
             <div class="card">
-                <img src="{{user.profile_url}}" alt="Image" class="card-img-top">
+                <img src="{{user.profile_url}}" alt="Image" class="card-img-top mx-auto" style="max-width: 400px;">
                 <div class="card-body">
                     <h4 class="text-center card-title">Profile Details</h4>
                     <h5 class="card-text">Name</h5>
@@ -32,26 +32,23 @@
                     <h2 class="text-center card-title">Organizations</h2>
                     <ul class="list-group list-group-flush">
                         <li class="list-group-item">
-                            <div class="card">
-                                <!--Card image-->
-                                <div class="view overlay">
-                                <img class="img-fluid card-img-top" src="https://mdbootstrap.com/img/Photos/Others/images/16.jpg"
-                                    alt="Card image cap">
-                                <a href="#!">
-                                    <div class="mask rgba-white-slight"></div>
-                                </a>
+                            {% for org in user.organization_set.all %}
+                            <dov class="card">
+                                <div class="view overlay mx-auto">
+                                    <img src="{{org.logo_url}}" alt="..." class="img-thumbnail card-img-top" style="width: 25vw; max-width: 500px;">
                                 </div>
-                            
-                                <!--Card content-->
                                 <div class="card-body">
-                                <!--Title-->
-                                <h4 class="card-title">Org A</h4>
-                                <!--Text-->
-                                <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque necessitatibus recusandae voluptates! Autem ut sint nihil, saepe quae doloremque tenetur aspernatur beatae necessitatibus quod iste ullam fugiat maiores aliquam culpa?</p>
-                                <!-- Provides extra visual weight and identifies the primary action in a set of buttons -->
-                                <button type="button" class="btn btn-block btn-info">Read more</button>  
+                                    <h4>{{org.name}}</h4>
+                                    <p class="card-text">{{org.description}}</p>
+                                    <a href="{% url 'org_details' org.id%}" class="btn btn-block btn-info">Read more</a>
                                 </div>
+                            </dov>
+                            {% empty %}
+                            <div class="text-center">
+                                <h4>You have no organizations</h4>
+                                <a href="{% url 'org_create' %}" class="btn btn-info mx-auto">Create organization</a>
                             </div>
+                            {% endfor %}
                         </li>
                     </ul>
                 </div>

@@ -16,7 +16,7 @@
                     <h5>{{org.name}} </i>{% if org.verified %} <span class="badge badge-primary">Verified</span> {% else %} <span class="badge badge-danger">Not Verified</span> {% endif %}</h5>
                     <p>{{org.get_category_display}}</p>
                     <p><span class="font-weight-bold">{{org.city}}</span>, {{org.state}} | <span class="font-weight-bold">EIN</span>: {{org.ein}}</p>
-                    <p class="font-italic">{{org.mission_statements}}</p>
+                    <p class="font-italic">{{org.mission_statement}}</p>
                     <a href="{% url 'org_details' org.id %}" class="btn btn-outline-primary">Read More</a>
                 </div>
                 <div class="col-3 d-none d-md-block">

@@ -53,12 +53,12 @@ class Organization(models.Model):
     website_url = models.CharField(max_length=200)
     category = models.CharField(max_length=2, choices=CATAGORIES)
     ein = models.CharField(max_length=15)
-    fiscal_sponsor = models.CharField(max_length = 200)
-    guidestar_url = models.CharField(max_length = 200)
-    logo_url = models.CharField(max_length = 200, default='https://www.resetyourbody.com/wp-content/uploads/COMPANY_LOGO/logo-default.png')
+    fiscal_sponsor = models.CharField(max_length = 200, default='', blank=True)
+    guidestar_url = models.CharField(max_length = 200, default='', blank=True)
+    logo_url = models.CharField(max_length = 200, default='https://www.resetyourbody.com/wp-content/uploads/COMPANY_LOGO/logo-default.png', blank='True')
     #video_url TODO ICE BOX
-    description = models.TextField(max_length=500)
-    mission_statements = models.TextField(max_length=500)
+    description = models.TextField(max_length=500, verbose_name='about us')
+    mission_statement = models.TextField(max_length=500, verbose_name='mission statement')
     verified = models.BooleanField(default=False)
     user = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
 
@@ -67,6 +67,9 @@ class Organization(models.Model):
 
     def get_absolute_url(self):
         return reverse('org_details', kwargs={'pk': self.id})
+    
+    def get_donations(self):
+        return self.donation_set.all().order_by('-id')[:10]
 
 class BoardMember(models.Model):
     member = models.CharField(max_length=50)
@@ -90,4 +93,12 @@ class Gallery(models.Model):
 
     def __str__(self):
         return f'{self.organization} picture id ({self.id})'
+
+class Donation(models.Model):
+    amount = models.FloatField(default=50.00)
+    anonymous = models.BooleanField(default=False)
+    user = models.ForeignKey(CustomUser, blank=True, null=True, on_delete=models.SET_NULL)
+    organization = models.ForeignKey(Organization, on_delete=models.CASCADE)
     
+    def __str__(self):
+        return f'{self.user} org ({self.organization.id}) amount ${self.amount}'
