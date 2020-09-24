@@ -74,7 +74,10 @@ class Organization(models.Model):
 class BoardMember(models.Model):
     member = models.CharField(max_length=50)
     email = models.CharField(max_length=50)
+    company = models.CharField(max_length=200)
+    title = models.CharField(max_length=200)
     organization = models.ForeignKey(Organization, on_delete=models.CASCADE)
+    
 
     def __str__(self):
         return self.member
