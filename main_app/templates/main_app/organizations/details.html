@@ -112,14 +112,15 @@
                 {%endif%}
                 <div class="list-group-item list-group-item-action flex-column align-items-start">
                     <div class="d-flex w-100 justify-content-between">
-                        <p class="mb-1 font-weight-bold">Board Members</p>
+                        <p class="mb-1 font-weight-bold">Board Members<a class="btn btn-primary" href="{% url 'org_members_view' organization.id %}">Edit Members</a></p>
                     </div>
                     <div class="carousel slide" id="boardMember" data-ride="carousel">
                         <div class="carousel-inner">
                             {%for member in organization.boardmember_set.all %}
                             <div class="carousel-item {% if forloop.first %} active {% endif %}">
                                 <p class="mb-1 font-italic">{{member.member}}</p>
-                                <p class="mb-1 font-italic">{{member.email}}</p>
+                                <p class="mb-1 font-italic">{{member.company}}</p>
+                                <p class="mb-1 font-italic">{{member.title}}</p>
                             </div>
                             {%endfor%}
                             <form action="">
