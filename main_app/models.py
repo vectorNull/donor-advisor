@@ -69,7 +69,7 @@ class Organization(models.Model):
         return reverse('org_details', kwargs={'pk': self.id})
     
     def get_donations(self):
-        return self.donation_set.all().order_by('-id')[:10]
+        return self.donation_set.all().order_by('-id')[:8]
 
 class BoardMember(models.Model):
     member = models.CharField(max_length=50)

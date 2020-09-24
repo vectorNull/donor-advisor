@@ -52,15 +52,20 @@
         <hr>
         <h4 class="font-italic pt-2 pb-2" id="details">Gallery</h4>
         {% if user == organization.user %}
-        <form action="" class="form-inline">
+        <form action="{% url 'org_gallery_create' organization.id %}" method="POST" class="form-inline">
             {% csrf_token %}
-            <input type="text" class="form-control mb-2 mr-1" placeholder="Image url...">
+            <input type="text" class="form-control mb-2 mr-1" name="photo_url" placeholder="Image url...">
             <button type="submit" class="btn btn-primary mb-2">Upload</button>
         </form>
         {% endif %}
-        <div class="d-flex">
+        <div class="d-flex flex-wrap justify-content-center">
             {% for image in organization.gallery_set.all %}
-            <img src="image.picture_url" alt="..." class="img-thumbnail">
+            <div class="d-flex flex-wrap" style="max-width: 200px;">
+                <img src="{{image.picture_url}}" alt="..." class="img-thumbnail" style="max-width: 200px;">
+                {% if user == organization.user %}
+                <a href="{% url 'org_gallery_delete' organization.id image.id%}" class="btn mx-auto btn-primary">Delete</a>
+                {% endif %}
+            </div>
             {% empty %}
             <h5 class="font-weight-normal pt-2 pb-2">No gallery uploaded</h5>
             {% endfor %}
