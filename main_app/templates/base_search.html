@@ -2,15 +2,15 @@
     <form action="/organizations/" novalidate="novalidate">
         <div class="row">
             <div class="col-lg-12">
-                <div class="row">
-                    <div class="col-lg-4 col-md-4 col-sm-12 p-0">
-                        <input type="text" name="q" class="form-control" placeholder="Enter Name or EIN">
+                <div class="row align-middle p-1">
+                    <div class="col-lg-4 col-md-4 col-sm-12 p-0 form-group bg-white">
+                        <input type="text" name="q" class="form-control border-0 shadow-0" placeholder="Search by name or ein">
                     </div>
-                    <div class="col-lg-4 col-md-3 col-sm-12 p-0">
-                        <input name="l" type="text" class="form-control" placeholder="Enter Location">
+                    <div class="col-lg-4 col-md-3 col-sm-12 p-0 form-group bg-white border-left border-right">
+                        <input name="l" type="text" class="form-control border-0 shadow-0" placeholder="Location">
                     </div>
-                    <div class="col-lg-3 col-md-3 col-sm-12 p-0">
-                        <select name="c" class="form-control" id="exampleFormControlSelect1">
+                    <div class="col-lg-3 col-md-3 col-sm-12 p-0 form-group no-divider bg-white">
+                        <select name="c" class="form-control border-0 shadow-0 selectpicker" id="exampleFormControlSelect1">
                             <option value="" selected>Categories</option>
                             <option value="AG">Aging</option>
                             <option value="AF">Agriculture and Food</option>
@@ -49,8 +49,8 @@
                             <option value="WG">Woman and Girls</option>
                         </select>
                     </div>
-                    <div class="col-lg-1 col-md-2 col-sm-12 p-0">
-                        <button type="submit" class="btn btn-block btn-primary">Search</button>
+                    <div class="col-lg-1 col-md-2 col-sm-12 p-0 mb-3">
+                        <button type="submit" class="btn btn-block btn-warning">Search</button>
                     </div>
                 </div>
             </div>

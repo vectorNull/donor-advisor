@@ -2,7 +2,7 @@
 {% block content %}
 
 <!-- Carousel -->
-<div class="container p-0 m-0">
+<div class="container-fluid p-0 m-0 w-100" style="height: 60vh;">
   <div id="carouselHomePage" class="carousel slide" data-ride="carousel">
       <!-- Indicators -->
     <ol class="carousel-indicators">
@@ -14,34 +14,32 @@
     </ol>
     <div class="carousel-inner">
       <div class="carousel-item active">
-        <div class="container p-0 m-0" style="height:75vh;width:100vw;">
-          <img src="https://www.lifeprepacademy.org/wp-content/uploads/2020/09/Image-1.jpg" class="centered" alt="...">
+        <div class="container-fluid p-0 m-0 w-100" style="height:80vh;background:url('https://images.unsplash.com/photo-1573288810105-cf416af9186d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80') no-repeat center fixed; background-size: cover;">
         </div>
       </div>
       <div class="carousel-item">
-        <div class="container p-0 m-0" style="height:75vh;">
-          <img src="https://www.lifeprepacademy.org/wp-content/uploads/2020/09/Image-2.jpg" class="centered" alt="...">
+        <div class="container-fluid p-0 m-0 w-100" style="height:80vh;background:url('https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80') no-repeat center fixed; background-size: cover;">
         </div>
       </div>
       <div class="carousel-item">
-        <div class="container p-0 m-0" style="height:75vh;">
-          <img src="https://www.lifeprepacademy.org/wp-content/uploads/2020/09/Image-3.jpg" class="centered" alt="...">
+        <div class="container-fluid p-0 m-0 w-100" style="height:80vh;background:url('https://images.unsplash.com/photo-1521737604893-d14cc237f11d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1363&q=80') no-repeat center fixed; background-size: cover;">
         </div>
       </div>
       <div class="carousel-item">
-        <div class="container p-0 m-0" style="height:75vh;">
-          <img src="https://www.lifeprepacademy.org/wp-content/uploads/2020/09/Image-4.jpg" class="centered" alt="...">
+        <div class="container-fluid p-0 m-0 w-100" style="height:80vh;background:url('https://images.unsplash.com/photo-1455849318743-b2233052fcff?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80') no-repeat center fixed; background-size: cover;">
         </div>
       </div>
       <div class="carousel-item">
-        <div class="container p-0 m-0" style="height:75vh;">
-          <img src="https://www.lifeprepacademy.org/wp-content/uploads/2020/09/Image-5.jpg" class="centered" alt="...">
+        <div class="container-fluid p-0 m-0 w-100" style="height:80vh;background:url('https://images.unsplash.com/photo-1582213782179-e0d53f98f2ca?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80') no-repeat center fixed; background-size: cover;">
         </div>
       </div>
     </div>
   </div>
 </div>
-<div class="position-relative" style="top: -250px">
+<div class="position-relative" style="top: -200px">
+  <div class="container text-center text-lg-left">
+    <h1 class="display-3 font-weight-bold text-light " style="text-shadow: 3px 3px #ff1010; font-size: min(max(50px, 5vw), 500px)">Find Nonprofits</h1>
+  </div>
   {% include 'base_search.html' %}
 </div>
 <!-- Heading -->
