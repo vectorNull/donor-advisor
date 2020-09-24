@@ -6,7 +6,7 @@ from django.views.generic.edit import UpdateView, DeleteView
 from django.db.models import Q
 
 from .forms import OrganizationForm, DonationForm
-from .models import Organization, Review
+from .models import Organization, Review, Gallery
 
 # Create your views here.
 def home_page(request):
@@ -80,6 +80,22 @@ def organization_create(request):
     return render(request, 'main_app/organizations/create.html', {
         'org_form': org_form
     })
+
+@login_required
+def org_gallery_create(request, pk):
+    org = Organization.objects.get(id=pk)
+    if request.user == org.user:
+        photo_url = request.POST.get('photo_url')
+        Gallery.objects.create(picture_url=photo_url, organization_id=pk)
+    return redirect('org_details', pk=pk)
+
+@login_required
+def org_gallery_delete(request, pk, photo_id):
+    org = Organization.objects.get(id=pk)
+    if request.user == org.user:
+        Gallery.objects.get(id=photo_id).delete()
+    return redirect('org_details', pk=pk)
+
 
 @login_required
 def org_review_create(request, pk):

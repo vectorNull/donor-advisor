@@ -20,4 +20,8 @@ urlpatterns = [
 
     #DONATIONS
     path('organizations/<int:pk>/donate/', views.org_donate_create, name='org_donate_create'),
+
+    #GALLERY
+    path('organizations/<int:pk>/gallery/create/', views.org_gallery_create, name='org_gallery_create'),
+    path('organizations/<int:pk>/gallery/<int:photo_id>/delete/', views.org_gallery_delete, name='org_gallery_delete'),
 ]
