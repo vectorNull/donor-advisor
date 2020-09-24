@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+    <div class="container-fluid px-3">
+        <div class="row min-vh-100">
+            <div class="col-md-8 col-lg-6 col-xl-5 d-flex align-items-start">
+                <div class="w-100 py-5 px-md-5 px-xl-6 position-relative">
+                    <div class="mb-5">
+                        <h2 class="text-center">Add Board Member</h2>
+                    </div>
+                    <form method="POST" action="{% url 'org_members_create' org.id %}" class="form-validate">
+                        {% csrf_token %}
+                        {{ member_form|crispy }}
+                        <button class="btn btn-lg btn-block btn-primary">Add Member</button>
+                        <input type="hidden" name="next" value="{{ next }}">
+                    </form>
+                    {% for member in org.boardmember_set.all %}
+                        <h1>{{ member.member }}<a class="btn btn-danger" href="{% url 'org_members_delete' org.id member.id %}">Delete</a></h1>
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="col-md-4 col-lg-6 col-xl-7 d-none d-md-block">
+                <div class="bg-cover h-100 mr-n3" style="background:#8cc2ce;background: -webkit-linear-gradient(to right, #FFF,#8cc2ce);background: linear-gradient(to right, #FFF, #8cc2ce);"></div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
