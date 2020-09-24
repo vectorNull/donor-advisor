@@ -21,10 +21,11 @@ The technologies used to create Donor Adviser include:
 - Bootstrap
 - Crispy Forms
 - AWS
+- Postgresql
 
 ## **Getting Started**
 
-[Click Here]() to visit Donor Adviser
+[Click here](Http://donoradvisor.heroku.com) to visit Donor Adviser
 
 ## **Resources**
 
