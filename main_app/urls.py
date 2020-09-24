@@ -24,4 +24,10 @@ urlpatterns = [
     #GALLERY
     path('organizations/<int:pk>/gallery/create/', views.org_gallery_create, name='org_gallery_create'),
     path('organizations/<int:pk>/gallery/<int:photo_id>/delete/', views.org_gallery_delete, name='org_gallery_delete'),
+
+    # BOARDMEMBERS
+    path('organizations/<int:pk>/members/', views.org_members_view, name='org_members_view'),
+    path('organizations/<int:pk>/members/create', views.org_members_create, name='org_members_create'),
+    path('organizations/<int:pk>/members/<int:member_id>/delete/', views.org_members_delete, name='org_members_delete'),
+
 ]
