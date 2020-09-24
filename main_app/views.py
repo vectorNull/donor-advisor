@@ -5,8 +5,8 @@ from django.views.generic import ListView, DetailView
 from django.views.generic.edit import UpdateView, DeleteView
 from django.db.models import Q
 
-from .forms import OrganizationForm, DonationForm
-from .models import Organization, Review, Gallery
+from .forms import OrganizationForm, DonationForm, BoardMemberForm
+from .models import Organization, Review, Gallery, BoardMember
 
 # Create your views here.
 def home_page(request):
@@ -131,3 +131,34 @@ def org_donate_create(request, pk):
         'donate_form': donate_form,
         'org': org
     })
+
+@login_required
+def org_members_view(request, pk):
+    org = Organization.objects.get(id=pk)
+    if request.user != org.user:
+        return redirect('org_details', pk=pk)
+    member_form = BoardMemberForm()
+    return render(request, 'main_app/organizations/members/details.html', {
+        'org':org,
+        'member_form': member_form
+    })
+
+@login_required
+def org_members_create(request, pk):
+    org = Organization.objects.get(id=pk)
+    if request.user != org.user:
+        return redirect('org_details', pk=pk)
+    form = BoardMemberForm(request.POST)
+    if form.is_valid():
+        new_member = form.save(commit=False)
+        new_member.organization_id = pk
+        new_member.save()
+    return redirect('org_members_view', pk=pk)
+
+@login_required
+def org_members_delete(request, pk, member_id):
+    org = Organization.objects.get(id=pk)
+    if request.user != org.user:
+        return redirect('org_details', pk=pk)
+    BoardMember.objects.get(id=member_id).delete()
+    return redirect('org_members_view', pk=pk)
