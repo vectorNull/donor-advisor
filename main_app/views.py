@@ -10,7 +10,10 @@ from .models import Organization, Review, Gallery, BoardMember
 
 # Create your views here.
 def home_page(request):
-    return render(request, 'main_app/home.html')
+    featured = Organization.objects.all().order_by('-id')[:3]
+    return render(request, 'main_app/home.html', {
+        'featured': featured
+    })
 
 def contact_page(request):
     return render(request, 'main_app/contact.html')

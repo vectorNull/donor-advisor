@@ -17,14 +17,16 @@
                     <hr>
                     <a class="btn btn-info btn-block" href="{% url 'org_details' org.id %}">Back to organization</a>
                     <hr>
-                        <div class="d-flex flex-wrap border border-primary">
+                        <div class="d-flex flex-wrap">
                         {% for member in org.boardmember_set.all %}
-                            <div class="card w-25">
+                            <div class="card w-50">
                                 <div class="card-body">       
-                                    <p class="card-text">Name: {{member.member}}</p>
-                                    <p class="card-text">Email: {{member.email}} </p>
-                                    <p class="card-text">Company: {{member.company}}</p>
-                                    <p class="card-text">Title: {{member.title}}</p>
+                                    <h5 class="card-title text-center">{{member.member}}</h5>
+                                    <p class="card-text"><i class="far fa-envelope"></i> {{member.email}} </p>
+                                    <p class="card-text"><i class="fas fa-building"></i> {{member.company}}</p>
+                                    <p class="card-text"><i class="fas fa-user-tag"></i> {{member.title}}</p>
+                                </div>
+                                <div class="card-footer">
                                     <a class="btn btn-danger" href="{% url 'org_members_delete' org.id member.id %}">Delete</a><br><br>
                                 </div>
                             </div>
