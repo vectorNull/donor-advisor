@@ -60,11 +60,11 @@ class OrganizationUpdateView(LoginRequiredMixin, UpdateView):
 
 @login_required
 def organization_delete(request, pk):
-    org = Organization.objects.get(id=pk).delete()
+    org = Organization.objects.get(id=pk)
     if not org:
         return redirect('org_details', pk=pk)
     if org.user == request.user:
-        review.delete()
+        org.delete()
     return redirect('org_results')
 
 @login_required
