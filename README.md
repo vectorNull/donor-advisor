@@ -25,7 +25,7 @@ The technologies used to create Donor Adviser include:
 
 ## **Getting Started**
 
-[Click here](Http://donoradvisor.heroku.com) to visit Donor Adviser
+[Click here](Http://donoradvisor.herokuapp.com) to visit Donor Adviser
 
 ## **Resources**
 
