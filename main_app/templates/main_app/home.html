@@ -52,84 +52,31 @@
 <!-- Featured orgs -->
 <!-- Card deck -->
 <h1 class="text-center font-weight-normal">Featured Organizations</h1>
-<div class="row d-flex flex-wrap">
+<hr>
+<div class="row d-flex flex-wrap mt-4 justify-content-center">
   {% for org in featured %}
-  <div class="card text-center col-md-6 col-lg-4 col-sm-12">
-    <div class="view overlay">
-      <img class="card-img-top" style="max-width: 250px;" src="{{org.logo_url}}" alt="Card image cap">
-    </div>
-    <div class="card-body">
-      <h4 class="card-title">{{org.name}}</h4>
-      <h5 class="card-text font-weight-normal">{{org.city}}, {{org.state}}</h5>
-      <h5 class="card-text font-weight-normal">EIN: {{org.ein}}</h5>
-      <p class="card-text">{{org.mission_statement}}</p>
-    </div>
-    <div class="card-footer">
-      <a href="{% url 'org_details' org.id%}" class="btn btn-block btn-primary btn-md">Read more</a>
+  <div class="col-md-6 col-lg-4 col-sm-12">
+    <div class="card text-center h-100">
+      <div class="view overlay">
+        <img class="card-img-top" style="max-width: 250px;" src="{{org.logo_url}}" alt="Card image cap">
+      </div>
+      <div class="card-body">
+        <h4 class="card-title">{{org.name}}</h4>
+        <h5 class="card-text font-weight-normal">{{org.city}}, {{org.state}}</h5>
+        <h5 class="card-text font-weight-normal">EIN: {{org.ein}}</h5>
+        <p class="card-text">{{org.mission_statement}}</p>
+      </div>
+      <div class="card-footer">
+        <a href="{% url 'org_details' org.id%}" class="btn btn-block btn-primary btn-md">Read more</a>
+      </div>
     </div>
   </div>
   {% empty %}
   <h5 class="text-center">No organizations signed up :(</h5>
   {% endfor %}
-  </div>
-  <hr>
-  <section class="mb-4">
-    <h2 class="h1-responsive font-weight-bold text-center my-4">Contact Us</h2>
-    <p class="text-center w-responsive mx-auto mb-5">How Can We Help You Today?</p>
-    <div class="row">
-        <div class="col-md-9 mb-md-0 mb-5">
-            <form id="contact-form" name="contact-form" action="#"> 
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="md-form mb-0">
-                            <label for="name" class="">Name</label>
-                            <input type="text" id="name" name="name" class="form-control">
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="md-form mb-0">
-                            <label for="email" class="">Email</label>
-                            <input type="text" id="email" name="email" class="form-control">
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="md-form mb-0">
-                            <label for="subject" class="">Subject</label>
-                            <input type="text" id="subject" name="subject" class="form-control">
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="md-form">
-                            <label for="message">Message</label>
-                            <textarea type="text" id="message" name="message" rows="2" class="form-control md-textarea"></textarea>
-                        </div>
-                    </div>
-                </div>
-            </form>
-            <br>
-            <div class="text-center text-md-left">
-                <a class="btn btn-info btn-block text-white ">Send</a>
-            </div>
-            <div class="status"></div>
-        </div>
-        <div class="col-md-3 text-center">
-            <ul class="list-unstyled mb-0">
-                <li><i class="fas fa-map-marker-alt fa-2x"></i>
-                    <p>Post Office Box 83384, Los Angeles, CA 90083</p>
-                </li>
-                <li><i class="fas fa-phone mt-4 fa-2x"></i>
-                    <p>(888) ADVISER (238-4737)</p>
-                </li>
-                <li><i class="fas fa-envelope mt-4 fa-2x"></i>
-                    <p>contact@donoradviser.com</p>
-                </li>
-            </ul>
-        </div>
-    </div>
+</div>
+<section class="mt-4 pb-4" style="background-color: rgb(228, 235, 236);">
+  {% include 'base_contact.html' %}
 </section>
 
 {% endblock %}
