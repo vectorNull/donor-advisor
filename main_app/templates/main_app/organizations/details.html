@@ -112,7 +112,7 @@
                 {%endif%}
                 <div class="list-group-item list-group-item-action flex-column align-items-start">
                     <div class="d-flex w-100 justify-content-between">
-                        <p class="mb-1 font-weight-bold">Board Members <a class="btn btn-sm btn-primary" href="{% url 'org_members_view' organization.id %}">Edit Members</a></p>
+                        <p class="mb-1 font-weight-bold">Board Members {% if organization.user == user%}<a class="btn btn-sm btn-primary" href="{% url 'org_members_view' organization.id %}">Edit Members</a>{% endif %}</p>
                     </div>
                     <div class="carousel slide" id="boardMember" data-ride="carousel">
                         <div class="carousel-inner">
