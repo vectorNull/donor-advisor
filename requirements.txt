@@ -14,7 +14,7 @@ configobj==5.0.6
 constantly==15.1.0
 cryptography==2.1.4
 defusedxml==0.6.0
-Django==3.0.7
+Django==3.2.15
 django-allauth==0.42.0
 django-crispy-forms==1.9.2
 django-heroku==0.3.1
@@ -59,7 +59,7 @@ s3transfer==0.3.3
 SecretStorage==2.3.1
 service-identity==16.0.0
 six==1.15.0
-sqlparse==0.3.0
+sqlparse==0.4.2
 systemd-python==234
 toml==0.10.1
 Twisted==17.9.0
