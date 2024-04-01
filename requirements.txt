@@ -43,7 +43,7 @@ pyasn1-modules==0.2.1
 pycairo==1.16.2
 pycrypto==2.6.1
 PyJWT==1.5.3
-pylint==2.6.0
+pylint==2.6.1
 pyOpenSSL==17.5.0
 pyperclip==1.8.0
 python-dateutil==2.8.1
